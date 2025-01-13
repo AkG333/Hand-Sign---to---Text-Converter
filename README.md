@@ -7,4 +7,4 @@ But I've updated the code in the preprocessing part by adding the process of Nor
 Also added a code for inhomogeneity error. You''ll get this error from original Code.
 Limitations:Not suitable for a moving gesture.Again this isn't a deep learning project.For that you may have to use a lstm model.This code is only for 42 features(x,y) , so it is only capable of showing meaning of single hand gesture.
 The methodology of model creation is in process.txt file(Here you'll find detailed explaination of each script).
-
+Important: don't forget to fill the paths in accordance with your file/directory paths in the scripts
