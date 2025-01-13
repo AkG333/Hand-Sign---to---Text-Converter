@@ -1,0 +1,45 @@
+3.1	Collection.py :
+This script captures images from a webcam to build a dataset for a sign language recognition system. The user gets prompted to enter a class label. The following steps are involved:
+1.	Directory Setup: A directory is created with meaning as its name to store the collected images. If the directory for a specific class label doesn't exist, it is created.
+2.	Camera Setup: The webcam is initialized using OpenCV. If the camera cannot be opened, the program exits.
+3.	User Input for Labels: The user is prompted to enter a class label for each set of images to be collected. If the user enters "exit", the program will stop.
+4.	Frame Capture: For each class, the user can press "Y" to begin capturing images. The script continuously captures frames and displays them on the screen with instructions.
+5.	Image Saving: Images are captured until the specified limit is reached. Each captured image is saved in the appropriate class directory.
+6.	Exit Mechanism: If the user presses "Q", the program will exit and release the camera.
+7.	Repeat for Additional Classes: After collecting the images for one class, the user is prompted to proceed to the next class or exit.
+3.2 CreatingDataset.py:
+This Python script processes a dataset of hand gesture images to extract hand landmarks, which are then saved as normalized coordinates for use in machine learning models. The script leverages MediaPipe, a popular framework for hand tracking, to detect and process hand landmarks from images. Here’s a breakdown of the code:
+Initialization of MediaPipe:
+The mediapipe library is used to detect hand landmarks in images. The Hands module from mediapipe.solutions is initialized to process images and extract hand landmarks.
+Setting Up Directories and Variables:
+The script initializes paths and variables for the data directory (DATA_DIR) , where gesture images are stored. It also sets up empty lists (data and labels) to hold the processed landmarks and their corresponding gesture labels.
+Preprocessing Function:
+The preprocess function is defined to:
+1)	Iterate over the directories and subdirectories (each representing a different gesture class).
+2)	For each image, it converts the image from BGR to RGB and processes it using MediaPipe to detect hand landmarks.
+3)	The landmarks (x and y coordinates) are extracted, normalized (so that coordinates fall between 0 and 1), and flattened into a list.
+4)	If exactly 42 landmarks (the number of landmarks in each hand) are detected, the normalized coordinates are added to the Data list, and the corresponding gesture label (the folder name) is added to the Labels list.
+Saving the Data:
+After processing the images, the script saves the collected data and labels to a pickle file. This file can later be used to train machine learning models.
+
+
+3.3.Train.py:
+This script trains a Random Forest classifier on the preprocessed hand gesture dataset and evaluates its performance. It also saves the trained model for future use. Below is a breakdown of the code:
+1.	Loading the Data:
+The preprocessed data and labels, saved in a pickle file (data.pickle), are loaded into the script. This data contains hand landmarks (as features) and corresponding gesture labels.
+2.	Data Conversion:
+The features and labels are converted into NumPy arrays for efficient processing. These arrays are used to train the machine learning model.
+3.	Train-Test Split:
+The dataset is split into training and testing sets using train_test_split from sklearn.model_selection. 80% of the data is used for training, and 20% is reserved for testing. The split is stratified, meaning the distribution of labels is preserved in both the training and testing sets.
+4.	Model Initialization and Training:
+A Random Forest Classifier is initialized and trained on the training data (x_train and y_train). Random Forest is a popular ensemble method known for its robustness and performance in classification tasks.
+5.	Prediction and Evaluation:
+The trained model makes predictions on the test data (x_test), and the accuracy of the model is calculated using accuracy_score from sklearn.metrics. The accuracy is printed as a percentage.
+6.	Saving the Model:
+The trained model is serialized and saved into a pickle file (model.p) for later use. This file can be loaded to make predictions without retraining the model.
+
+
+3.4.Run.py:
+
+Now this scripts loads the model and deploy it using opencv library. Again the frames are extracted with the help of opencv library  in real time and frames gets converted to rgb format so that hand landmarks can be drawn.
+The landmarks are sent to model and then the model predicts the gesture in real time.
