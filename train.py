@@ -5,7 +5,7 @@ from sklearn.model_selection import train_test_split
 from sklearn.metrics import accuracy_score
 
 # Load preprocessed data
-data_dict = pickle.load(open(r"C:\Users\ACER.DESKTOP-G5EVCFN\OneDrive\Desktop\FP2\data.pickle", 'rb'))
+data_dict = pickle.load(open("", 'rb'))
 
 # Convert data and labels to NumPy arrays
 data = np.asarray(data_dict['data'])
@@ -28,7 +28,7 @@ score = accuracy_score(y_predict, y_test)
 print(f"{score * 100:.2f}% of samples were classified correctly!")
 
 # Save the trained model to a file
-model_output_path = r"C:\Users\ACER.DESKTOP-G5EVCFN\OneDrive\Desktop\FP2\model.p"
+model_output_path = ""
 
 with open(model_output_path, 'wb') as f:
     pickle.dump({'model': model}, f)
