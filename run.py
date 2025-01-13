@@ -4,7 +4,7 @@ import mediapipe as mp
 import numpy as np
 
 # Load the trained model
-model_path = r"C:\Users\ACER.DESKTOP-G5EVCFN\OneDrive\Desktop\FP2\model.p"
+model_path = ""
 with open(model_path, 'rb') as f:
     model_dict = pickle.load(f)
     model = model_dict['model']
