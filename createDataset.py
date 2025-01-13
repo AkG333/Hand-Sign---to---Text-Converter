@@ -8,7 +8,7 @@ mp_hands = mp.solutions.hands
 hands = mp_hands.Hands(static_image_mode=True, min_detection_confidence=0.3)
 
 # Path to the data directory
-DATA_DIR = r"C:\Users\ACER.DESKTOP-G5EVCFN\OneDrive\Desktop\FP2\Data"
+DATA_DIR = ""
 
 # Initialize data and labels
 data = []
@@ -63,7 +63,7 @@ def process_images(data_dir):
 process_images(DATA_DIR)
 
 # Save the processed data to a pickle file
-output_path = r"C:\Users\ACER.DESKTOP-G5EVCFN\OneDrive\Desktop\FP2\data.pickle"
+output_path = ""
 with open(output_path, 'wb') as f:
     pickle.dump({'data': data, 'labels': labels}, f)
 
