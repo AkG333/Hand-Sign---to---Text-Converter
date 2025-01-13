@@ -2,7 +2,7 @@ import os
 import cv2
 
 # Define the directory to store data
-DIR = r"C:\Users\ACER.DESKTOP-G5EVCFN\OneDrive\Desktop\FP2\Data2"
+DIR = ""
 
 # Parameters
 dataset_size = 100  # Number of images per class
